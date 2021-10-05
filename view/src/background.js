@@ -2,31 +2,9 @@
 
 import { app, protocol, BrowserWindow, shell } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
+import { createAutoUpdater } from "./auto-updater.js";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
-
-let fixedURL = path.join(process.resourcesPath, '/_/source-ros.sh'); 
-console.log(fixedURL)
-shell.openExternal(fixedURL)
-
-
-const { exec } = require("child_process");
-/** 
- * Can't use source because?
- * 
- * @see https://stackoverflow.com/questions/13702425/source-command-not-found-in-sh-shell 
-*/
-exec(". /opt/ros/foxy/setup.bash", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`stderr: ${stderr}`);
-        return;
-    }
-    console.log(`stdout: ${stdout}`);
-});
 
 import './ros'
 
@@ -56,6 +34,7 @@ async function createWindow() {
     createProtocol("app");
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
+    createAutoUpdater();
   }
 }
 
