@@ -1,42 +1,71 @@
 import { dialog } from "electron";
 import { autoUpdater } from "electron-updater";
 
+// Toggle show dialogs
+const showDialogs = process.env.VUE_APP_SHOW_AUTO_UPDATE_DIALOGS || true;
+
+/**
+ * Auto updater used in background.js.
+ *
+ * @param {null}
+ * @returns {void}
+ */
 function createAutoUpdater() {
   autoUpdater.checkForUpdatesAndNotify();
   autoUpdater.on("checking-for-update", () => {
-    dialog.showMessageBox({
-      message: `Checking for update`,
-    });
+    showDialogs &&
+      showDialog({
+        message: `Checking for update`,
+      });
   });
   autoUpdater.on("update-available", (info) => {
-    dialog.showMessageBox({
-      message: `A new version ${info.version}, of the app is available`,
-      detail:
-        "The update will be downloaded in the background. You will be notified when it is ready to be installed.",
-    });
+    showDialogs &&
+      showDialog({
+        message: `A new version ${info.version}, of the app is available`,
+        detail:
+          "The update will be downloaded in the background. You will be notified when it is ready to be installed.",
+      });
   });
   autoUpdater.on("update-not-available", (info) => {
-    dialog.showMessageBox({
-      message: `Update not available`,
-    });
+    showDialogs &&
+      showDialog({
+        message: `Update not available`,
+      });
   });
   autoUpdater.on("error", (err) => {
-    dialog.showMessageBox({
-      message: `Error in auto-updater`,
-      detail: `${err.toString()}`,
-    });
+    showDialogs &&
+      showDialog({
+        message: `Error in auto-updater`,
+        detail: `${err.toString()}`,
+      });
   });
   autoUpdater.on("download-progress", (progressObj) => {
-    dialog.showMessageBox({
-      message: `Download in progress`,
-      detail: `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`,
-    });
+    showDialogs &&
+      showDialog({
+        message: `Download in progress`,
+        detail: `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`,
+      });
   });
   autoUpdater.on("update-downloaded", (info) => {
-    dialog.showMessageBox({
-      message: `Successfully downloaded, installing now (app will exit).`,
-    });
+    showDialogs &&
+      showDialog({
+        message: `Successfully downloaded update, installing now (app will exit).`,
+      });
     autoUpdater.quitAndInstall();
+  });
+}
+
+/**
+ * Generate & show dialogs.
+ *
+ * @param {string} message
+ * @param {string} details
+ * @returns {void}
+ */
+function showDialog(message = "", details = "") {
+  dialog.showMessageBox({
+    message: message,
+    details: details,
   });
 }
 

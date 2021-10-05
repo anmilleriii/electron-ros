@@ -16,6 +16,10 @@
     "release": "npm run electron:build -- -p always"
   },
   "main": "background.js",
+  "engines": {
+    "node": "15.14.0",
+    "npm": "7.7.6"
+  },
   "dependencies": {
     "core-js": "3.6.5",
     "electron-updater": "4.3.9",
