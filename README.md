@@ -52,7 +52,7 @@ While the `rclnodejs` `README.md` suggests:
 
 `git clone https://github.com/anmilleriii/electron-ros.git`
 
-`cd electron-ros/view`
+`cd electron-ros/app`
 
 Source ROS manually.
 
@@ -86,7 +86,7 @@ We can compile a petite C script to do this:
 int main()
 {
     // Adjust application name as needed.
-    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'view-.[^\s]*' | head -1) && ./$(ls | grep 'view-.[^\s]*' | head -1)\"");
+    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'app-.[^\s]*' | head -1) && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
     return 0;
 }
 ```

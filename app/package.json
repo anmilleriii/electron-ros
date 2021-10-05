@@ -1,5 +1,5 @@
 {
-  "name": "view",
+  "name": "app",
   "version": "0.0.0",
   "private": true,
   "description": "Sample implementation of rclnodejs in production Electron app.",
