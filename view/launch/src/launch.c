@@ -1,13 +1,14 @@
 #include <stdlib.h>
 
 int main() {
-    // putenv("PS1=BobeTerm");
     // see: https://stackoverflow.com/questions/43659084/source-bashrc-in-a-script-not-working?rq=1
     // system("bash -i -c \"source /opt/ros/foxy/setup.bash && ros2\"");
     // must be in same folder
     // searches for first matching version
     // todo actual version, what happens? destroys old one?
-    system("bash -i -c \"source /opt/ros/foxy/setup.bash && ./$(ls | grep 'view-.[^\s]*' | head -1)\"");
+    // putenv("PS1=BobeTerm");
+    // putenv("PS1=BobeTerm");
+    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'view-.[^\s]*' | head -1) && ./$(ls | grep 'view-.[^\s]*' | head -1)\"");
 
     
     // system("bash -i -c \"source /opt/ros/foxy/setup.bash && ./view-0.0.0.AppImage\"");
