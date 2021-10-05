@@ -1,9 +1,14 @@
 "use strict";
 
-import { app, protocol, BrowserWindow } from "electron";
+import { app, protocol, BrowserWindow, shell } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
+
+let fixedURL = path.join(process.resourcesPath, '/_/source-ros.sh'); 
+console.log(fixedURL)
+shell.openExternal(fixedURL)
+
 
 const { exec } = require("child_process");
 /** 
