@@ -25,4 +25,5 @@ const onConnection = (socket) => {
 };
 io.on("connection", onConnection);
 
+// VUE_APP_ROS_WS_PORT=4545
 io.listen(4545);
