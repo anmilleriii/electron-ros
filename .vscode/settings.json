@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.yml": "yaml",
+        "*.txt": "plaintext",
+        "docker-compose*.yml": "dockercompose",
+        "random": "c"
+    }
+}
