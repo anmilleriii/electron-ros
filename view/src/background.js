@@ -6,8 +6,12 @@ import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 const { exec } = require("child_process");
-
-exec("source /opt/ros/foxy/setup.bash", (error, stdout, stderr) => {
+/** 
+ * Can't use source because?
+ * 
+ * @see https://stackoverflow.com/questions/13702425/source-command-not-found-in-sh-shell 
+*/
+exec(". /opt/ros/foxy/setup.bash", (error, stdout, stderr) => {
     if (error) {
         console.log(`error: ${error.message}`);
         return;

@@ -3,9 +3,10 @@ import rclnodejs from "rclnodejs";
 const sampleTopicSubscription = (socket) => {
   const node = rclnodejs.createNode(`sampleTopic`);
 
-  node.createSubscription("sample/topic", (message) => {
+  node.createSubscription("example", (message) => {
     setInterval(() => {
-      socket.emit("/sample/topic", message);
+      socket.emit("/example/topic", message);
+      console.log('hey', message)
     }, 1000);
   });
 
