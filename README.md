@@ -1,4 +1,4 @@
-# electron-ros
+# electron-launch-file
 
 ### Purpose
 
@@ -152,7 +152,31 @@ However we have introduced the complexity of needing to launch our app via the `
 
 To achieve auto launch then, we can use `cron` or `systemd`. Here `systemd` is used.
 
-`sudo systemctl enable /etc/systemd/system/hello.service`
+Create a `systemd` `service` in `/etc/systemd/system/`.
+
+````systemd
+# /etc/systemd/system/auto-launch.service
+
+[Unit]
+Description=Electron application auto-launch on boot.
+
+[Service]
+# ExecStart=<path_to_launch_executable>
+ExecStart=/opt/app/launch
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+````
+
+Ensure you have granted permissions to the `launch` file
+
+`chmod u+x <path_to_launch_executable>`
+
+And finally enable the service to start on boot.
+
+`sudo systemctl enable auto-launch.service`
 
 ##### Common Errors
 
