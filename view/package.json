@@ -1,0 +1,45 @@
+{
+  "name": "view",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sample implementation of rclnodejs in production Electron app.",
+  "repository": "https://github.com/anmilleriii/electron-ros.git",
+  "author": "Al Miller",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "electron:build": "vue-cli-service electron:build --linux=AppImage --x64",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps",
+    "release": "npm run electron:build -- -p always"
+  },
+  "main": "background.js",
+  "engines": {
+    "node": "15.14.0",
+    "npm": "7.7.6"
+  },
+  "dependencies": {
+    "core-js": "3.6.5",
+    "electron-updater": "4.3.9",
+    "socket.io": "^4.2.0",
+    "vue": "3.1.1",
+    "rclnodejs": "0.19.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "4.5.0",
+    "@vue/cli-plugin-eslint": "4.5.0",
+    "@vue/cli-service": "4.5.0",
+    "@vue/compiler-sfc": "3.1.1",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "10.1.0",
+    "electron": "12.0.0",
+    "electron-devtools-installer": "3.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-vue": "7.0.0",
+    "prettier": "^2.2.1",
+    "vue-cli-plugin-electron-builder": "2.0.0"
+  }
+}
