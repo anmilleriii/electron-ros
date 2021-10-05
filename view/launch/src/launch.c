@@ -6,8 +6,9 @@ int main() {
     // must be in same folder
     // searches for first matching version
     // todo actual version, what happens? destroys old one?
-    // putenv("PS1=BobeTerm");
-    // putenv("PS1=BobeTerm");
+    // putenv("PS1=?");
+    // match first
+    // todo need sudo?
     system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'view-.[^\s]*' | head -1) && ./$(ls | grep 'view-.[^\s]*' | head -1)\"");
 
     
