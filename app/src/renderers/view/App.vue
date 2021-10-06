@@ -30,7 +30,7 @@ const rosWsConnection = io(
 function createTopicSubscription(topicName) {
   console.log('client is subscribed')
   rosWsConnection.on(topicName, (response) => {
-    message.value = response;
+    message.value = response.data;
   });
 }
 createTopicSubscription('/topic')
