@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { creatTopicSubscription } from "../ros-util.js";
+import { creatTopicSubscription } from "./ros/subscriber.js";
 
 // todo actual ros topic subscription
 const subscription = creatTopicSubscription("/example/topic");
