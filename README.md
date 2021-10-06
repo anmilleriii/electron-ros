@@ -76,11 +76,9 @@ To source the ROS installation in a shared context with the Electron app, we can
 
 Our launch file needs to 1) source ROS 2) grant permissions to the Electron app and 3) start the Electron app.
 
-We can compile a petite C script to do this:
+We can compile a petite `launch.sh` bash script to do this:
 
 ```bash
-// launch.sh
-
 #! /bin/bash env -i
 
 source /opt/ros/foxy/setup.bash
