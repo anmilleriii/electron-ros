@@ -18,7 +18,6 @@ const onConnection = (socket) => {
       createTopicPublisher(socket);
 
       createTopicSubscription(socket);
-      rclnodejs.spin(node);
     })
     .catch((error) => console.log(error));
 
