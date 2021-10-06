@@ -6,6 +6,7 @@ const rosWsConnection = io(
 /**
  * Subscribe to the backend publisher which is itself subscribing to ROS.
  * Could be named client-subscrition.js
+ * Vuex would be used here to subscribe...
  *
  * @param {String} topicName
  * @returns {String} response
@@ -13,7 +14,7 @@ const rosWsConnection = io(
 function createTopicSubscription(topicName) {
   console.log('client is subscribed')
   rosWsConnection.on(topicName, (response) => {
-    console.log(response, 'asdf')
+    // console.log(response, 'asdf')
     // return response;
   });
 }
