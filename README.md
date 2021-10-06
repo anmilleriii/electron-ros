@@ -198,12 +198,14 @@ Add `rclnodejs` to externals in `vue.config.js`:
 // vue.config.js
 
 module.exports = {
+  ...
   pluginOptions: {
     electronBuilder: {
       nodeIntegration: true,
       externals: ["rclnodejs"],
     },
   },
+  ...
 };
 ````
 

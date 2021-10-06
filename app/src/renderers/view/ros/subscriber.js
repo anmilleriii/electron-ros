@@ -1,7 +1,10 @@
 const io = require("socket.io-client");
 const rosWsConnection = io(
-  `localhost:${process.env.VUE_APP_ROS_WS_PORT || 4545}`
+  `http://localhost:4545`
 );
+// const rosWsConnection = io(
+//   `localhost:${process.env.VUE_APP_ROS_WS_PORT || 4545}`
+// );
 
 /**
  * Subscribe to the backend publisher which is itself subscribing to ROS.
