@@ -52,7 +52,7 @@ While the `rclnodejs` `README.md` suggests:
 
 `git clone https://github.com/anmilleriii/electron-ros.git`
 
-`cd electron-ros/view`
+`cd electron-ros/app`
 
 Source ROS manually.
 
@@ -86,7 +86,7 @@ We can compile a petite C script to do this:
 int main()
 {
     // Adjust application name as needed.
-    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'view-.[^\s]*' | head -1) && ./$(ls | grep 'view-.[^\s]*' | head -1)\"");
+    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'app-.[^\s]*' | head -1) && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
     return 0;
 }
 ```
@@ -152,7 +152,31 @@ However we have introduced the complexity of needing to launch our app via the `
 
 To achieve auto launch then, we can use `cron` or `systemd`. Here `systemd` is used.
 
-`sudo systemctl enable /etc/systemd/system/hello.service`
+Create a `systemd` `service` in `/etc/systemd/system/`.
+
+````systemd
+# /etc/systemd/system/auto-launch.service
+
+[Unit]
+Description=Electron application auto-launch on boot.
+
+[Service]
+# ExecStart=<path_to_launch_executable>
+ExecStart=/opt/app/launch
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+````
+
+Ensure you have granted permissions to the `launch` file
+
+`chmod u+x <path_to_launch_executable>`
+
+And finally enable the service to start on boot.
+
+`sudo systemctl enable auto-launch.service`
 
 ##### Common Errors
 
@@ -174,12 +198,14 @@ Add `rclnodejs` to externals in `vue.config.js`:
 // vue.config.js
 
 module.exports = {
+  ...
   pluginOptions: {
     electronBuilder: {
       nodeIntegration: true,
       externals: ["rclnodejs"],
     },
   },
+  ...
 };
 ````
 

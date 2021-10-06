@@ -1,5 +1,5 @@
 {
-  "name": "view",
+  "name": "app",
   "version": "0.0.0",
   "private": true,
   "description": "Sample implementation of rclnodejs in production Electron app.",
@@ -9,11 +9,13 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build --linux=AppImage --x64",
+    "electron:build": "vue-cli-service electron:build --linux=AppImage",
+    "electron:build:x64": "vue-cli-service electron:build --linux=AppImage --x64",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "release": "npm run electron:build -- -p always"
+    "release": "npm run electron:build -- -p always",
+    "release:x64": "npm run electron:build:x64 -- -p always"
   },
   "main": "background.js",
   "engines": {
@@ -24,6 +26,7 @@
     "core-js": "3.6.5",
     "electron-updater": "4.3.9",
     "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0",
     "vue": "3.1.1",
     "rclnodejs": "0.19.1"
   },
