@@ -7,6 +7,7 @@ int main()
     // and launch the Electron application from the same interactive terminal.
     // n.b. the regex naively searches for the first version matched filename, so don't
     // include multiple versions in the same directory.
-    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'app-.[^\s]*' | head -1) && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
+    system("bash -i -c \"source /opt/ros/foxy/setup.bash && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
+    // system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'app-.[^\s]*' | head -1) && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
     return 0;
 }
