@@ -1,0 +1,6 @@
+**/.env.local
+**/_temp/
+**/.vscode/
+**/node_modules/
+**/dist_electron/
+**/dist/
