@@ -1,0 +1,21 @@
+[Unit]
+Description=Electron application auto-launch on boot
+
+[Service]
+WorkingDirectory=/opt/app
+ExecStart=/opt/app/launch.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# Setup
+
+# chmod +x /opt/app/launch.sh
+# sudo vim /etc/systemd/system/auto-launch.service
+# sudo systemctl enable auto-launch.service
+
+# References
+
+# https://askubuntu.com/questions/919054/how-do-i-run-a-single-command-at-startup-using-systemd
+# https://unix.stackexchange.com/questions/506347/why-do-most-systemd-examples-contain-wantedby-multi-user-target

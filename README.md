@@ -78,32 +78,26 @@ Our launch file needs to 1) source ROS 2) grant permissions to the Electron app 
 
 We can compile a petite C script to do this:
 
-```c
-// launch.c
+```bash
+// launch.sh
 
-#include <stdlib.h>
+#! /bin/bash env -i
 
-int main()
-{
-    // Adjust application name as needed.
-    system("bash -i -c \"source /opt/ros/foxy/setup.bash && chmod +x $(ls | grep 'app-.[^\s]*' | head -1) && ./$(ls | grep 'app-.[^\s]*' | head -1)\"");
-    return 0;
-}
+source /opt/ros/foxy/setup.bash
+/opt/app/$(ls | grep 'app-.[^\s]*' | head -1) --no-sandbox
 ```
 
-You can use the C/C++ Compile Run VSCode extension to do this [C/C++ Compile Run](https://marketplace.visualstudio.com/items?itemName=danielpinto8zz6.c-cpp-compile-run).
-
-Once you have compiled the launch file as `launch`, move it to the same directory as your bundled Electron app.
+Move `launch.sh` to the same directory as your bundled Electron app.
 
 E.g., the final end-user's directory structure might look like:
 
 ````
 /opt/app/
-    launch
+    launch.sh
     example-0.1.0.AppImage
 ````
 
-Per the earlier caveat, you are responsible for distributing your Electron app with the launch file, and directing your users to launch from that rather than the Electron application, as they normally would.
+Per the earlier caveat, you are responsible for distributing your Electron app with the launch script, and directing your users to launch from that rather than the Electron application, as they normally would.
 
 ##### Release
 
@@ -158,13 +152,12 @@ Create a `systemd` `service` in `/etc/systemd/system/`.
 # /etc/systemd/system/auto-launch.service
 
 [Unit]
-Description=Electron application auto-launch on boot.
+Description=Electron application auto-launch on boot
 
 [Service]
-# ExecStart=<path_to_launch_executable>
-ExecStart=/opt/app/launch
-Restart=on-failure
-RestartSec=30
+WorkingDirectory=/opt/app
+ExecStart=/opt/app/launch.sh
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
