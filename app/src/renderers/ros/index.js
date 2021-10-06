@@ -1,10 +1,10 @@
 const rclnodejs = require("rclnodejs");
 const { Context } = require("rclnodejs");
-// import { createTopicPublisher } from "./modules/publisher.js";
-// import { createTopicSubscription } from "./modules/subscriber.js";
+import { createTopicPublisher } from "./modules/publisher.js";
+import { createTopicSubscription } from "./modules/subscriber.js";
 
-const createTopicPublisher = require("./modules/publisher.js")
-const createTopicSubscription = require("./modules/subscriber.js")
+// const createTopicPublisher = require("./modules/publisher.js")
+// const createTopicSubscription = require("./modules/subscriber.js")
 
 const options = {
   cors: {
