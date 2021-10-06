@@ -8,7 +8,7 @@ module.exports = {
   pluginOptions: {
     electronBuilder: {
       // Specify entrypoint for Electron app
-      mainProcessFile: 'src/main/background.js',
+      mainProcessFile: './src/main/background.js',
       nodeIntegration: true,
       externals: ["rclnodejs"],
       linux: {
