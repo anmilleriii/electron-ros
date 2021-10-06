@@ -8,7 +8,7 @@
 import { createTopicSubscription } from "./ros/subscriber.js";
 
 // todo actual ros topic subscription
-const subscription = createTopicSubscription("/example/topic");
+const subscription = createTopicSubscription("/topic");
 console.log(subscription);
 </script>
 

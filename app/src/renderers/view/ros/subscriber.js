@@ -5,12 +5,17 @@ const rosWsConnection = io(
 
 /**
  * Subscribe to the backend publisher which is itself subscribing to ROS.
+ * Could be named client-subscrition.js
  *
  * @param {String} topicName
- * @returns {void}
+ * @returns {String} response
  */
 function createTopicSubscription(topicName) {
-  rosWsConnection.on(topicName, (response) => console.log(response));
+  console.log('client is subscribed')
+  rosWsConnection.on(topicName, (response) => {
+    console.log(response, 'asdf')
+    // return response;
+  });
 }
 
 export { createTopicSubscription };
