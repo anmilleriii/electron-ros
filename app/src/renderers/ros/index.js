@@ -3,9 +3,6 @@ const { Context } = require("rclnodejs");
 import { createTopicPublisher } from "./modules/publisher.js";
 import { createTopicSubscription } from "./modules/subscriber.js";
 
-// const createTopicPublisher = require("./modules/publisher.js")
-// const createTopicSubscription = require("./modules/subscriber.js")
-
 const options = {
   cors: {
     origin: `*`,
@@ -17,8 +14,8 @@ const onConnection = (socket) => {
   rclnodejs
     .init()
     .then(() => {
-      // create publisher for example
-      console.log('connected')
+      // create publisher for sake of example
+      console.log('ros is connected')
       createTopicSubscription(socket);
       createTopicPublisher(socket);
     })
@@ -31,5 +28,4 @@ const onConnection = (socket) => {
 };
 io.on("connection", onConnection);
 
-// VUE_APP_ROS_WS_PORT=4545
 io.listen(process.env.VUE_APP_ROS_WS_PORT || 4545);

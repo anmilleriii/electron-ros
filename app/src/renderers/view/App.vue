@@ -1,26 +1,19 @@
 <template>
   <div class="message">
+    <p>If ros is connected, there will be a subscription value below.</p>
     <p>Subscription value: {{ message }}</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-const message = ref('')
-// import { createTopicSubscription } from "./ros/subscriber.js";
-
-// todo actual ros topic subscription
-// const subscription = createTopicSubscription("/topic");
-// console.log(subscription);
-
-
 const io = require("socket.io-client");
+
 const rosWsConnection = io(
-  `http://localhost:4545`
+  `http://localhost:${process.env.VUE_APP_ROS_WS_PORT || 4545}`
 );
-// const rosWsConnection = io(
-//   `localhost:${process.env.VUE_APP_ROS_WS_PORT || 4545}`
-// );
+
+const message = ref('')
 
 /**
  * Subscribe to the backend publisher which is itself subscribing to ROS.
@@ -39,15 +32,14 @@ function createTopicSubscription(topicName) {
 createTopicSubscription('/topic')
 </script>
 
-<script setup></script>
-
 <style>
 #app {
   width: 100vw;
   height: 100vh;
-  background: lightblue;
-  font-size: 45px;
+  background: rgb(0, 73, 97);
+  font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
+  color: white;
 }
 
 .message {
