@@ -18,6 +18,7 @@ const onConnection = (socket) => {
     .init()
     .then(() => {
       // create publisher for example
+      console.log('connected', socket)
       createTopicPublisher(socket);
 
       createTopicSubscription(socket);
