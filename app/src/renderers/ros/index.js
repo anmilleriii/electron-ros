@@ -18,10 +18,9 @@ const onConnection = (socket) => {
     .init()
     .then(() => {
       // create publisher for example
-      console.log('connected', socket)
-      createTopicPublisher(socket);
-
+      console.log('connected')
       createTopicSubscription(socket);
+      createTopicPublisher(socket);
     })
     .catch((error) => console.log(error));
 
