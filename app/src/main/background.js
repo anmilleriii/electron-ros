@@ -6,7 +6,7 @@ import { createAutoUpdater } from "./auto-updater.js";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-import './ros'
+import '../renderers/ros'
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([

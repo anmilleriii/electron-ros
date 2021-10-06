@@ -1,6 +1,10 @@
 const rclnodejs = require("rclnodejs");
 const { Context } = require("rclnodejs");
-const sampleTopicSubscription = require("./modules/subscriber.js");
+import { createTopicPublisher } from "./modules/publisher.js";
+import { createTopicSubscription } from "./modules/subscriber.js";
+
+// const createTopicPublisher = require("./modules/publisher.js")
+// const createTopicSubscription = require("./modules/subscriber.js")
 
 const options = {
   cors: {
@@ -13,8 +17,10 @@ const onConnection = (socket) => {
   rclnodejs
     .init()
     .then(() => {
-      sampleTopicSubscription.default(socket);
-      rclnodejs.spin(node);
+      // create publisher for example
+      console.log('connected')
+      createTopicSubscription(socket);
+      createTopicPublisher(socket);
     })
     .catch((error) => console.log(error));
 
@@ -26,4 +32,4 @@ const onConnection = (socket) => {
 io.on("connection", onConnection);
 
 // VUE_APP_ROS_WS_PORT=4545
-io.listen(4545);
+io.listen(process.env.VUE_APP_ROS_WS_PORT || 4545);
