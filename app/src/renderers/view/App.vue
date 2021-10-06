@@ -5,10 +5,10 @@
 </template>
 
 <script setup>
-import { creatTopicSubscription } from "./ros/subscriber.js";
+import { createTopicSubscription } from "./ros/subscriber.js";
 
 // todo actual ros topic subscription
-const subscription = creatTopicSubscription("/example/topic");
+const subscription = createTopicSubscription("/example/topic");
 console.log(subscription);
 </script>
 
