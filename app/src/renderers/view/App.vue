@@ -33,7 +33,7 @@ function createTopicSubscription(topicName) {
     message.value = response;
   });
 }
-createTopicSubscription()
+createTopicSubscription('/topic')
 </script>
 
 <script setup></script>
