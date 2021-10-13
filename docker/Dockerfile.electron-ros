@@ -1,0 +1,24 @@
+# syntax=docker/dockerfile:1
+
+# Creates a base image with Electron, Node, and ROS installed.
+
+# Start from Ubuntu image with electron-builder dependencies already installed
+# see https://hub.docker.com/r/electronuserland/builder/
+FROM electronuserland/builder:base AS base
+RUN apt-get update
+RUN rm -rf /var/lib/apt/lists/*
+
+# Install Node v15.14.0
+ENV NODE_VERSION 15.14.0
+RUN curl -L https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz | tar xz -C /usr/local --strip-components=1 && \
+    unlink /usr/local/CHANGELOG.md && unlink /usr/local/LICENSE && unlink /usr/local/README.md && \
+    # see https://github.com/npm/npm/issues/4531
+    npm config set unsafe-perm true
+
+# Install ROS-foxy
+# see https://github.com/osrf/docker_images/blob/11c613986e35a1f36fd0fa18b49173e0c564cf1d/ros/foxy/ubuntu/focal/ros-core/Dockerfile
+RUN apt-get clean && apt-get update --allow-unauthenticated
+RUN echo "deb http://packages.ros.org/ros2/ubuntu focal main" > /etc/apt/sources.list.d/ros2-latest.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+RUN apt-get update --allow-unauthenticated && apt-get install -y ros-foxy-ros-core
+RUN rm -rf /var/lib/apt/lists/*

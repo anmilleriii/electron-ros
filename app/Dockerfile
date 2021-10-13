@@ -15,8 +15,12 @@ FROM base AS dependencies
 WORKDIR /usr/src/app
 # COPY --chmod=0755 entrypoint.sh .
 COPY ./ ./
+SHELL ["/bin/bash", "-c"]
+RUN source /opt/ros/foxy/setup.bash && npm install --verbose
+# need node-sass rebuild here?
+CMD ["npm", "run", "release"]
 
-CMD ["bash", "entrypoint.sh"]
+# CMD ["bash", "entrypoint.sh"]
 
 # source ros prior to rclnodejs install
 # SHELL ["/bin/bash", "-c"]
