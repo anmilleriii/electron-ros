@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "description": "Sample implementation of rclnodejs in production Electron app.",
-  "repository": "https://github.com/anmilleriii/electron-ros.git",
   "author": "Al Miller",
   "scripts": {
     "serve": "vue-cli-service serve",
