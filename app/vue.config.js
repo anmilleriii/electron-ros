@@ -20,7 +20,7 @@ module.exports = {
     // Publish to Github Releases (could also use publish .AppImage's to AWS S3)
     // publish: ['github']
     /** @see https://www.electron.build/configuration/publish.html#s3options */
-    publish: [{ provider: "s3", bucket: "app-releases", acl: "private" }],
+    publish: [{ provider: "s3", bucket: "app-releases-01d41dadc3423", acl: "private" }],
 
 
 
