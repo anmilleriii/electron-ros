@@ -2,7 +2,8 @@
 
 # Start from ECR electron-ros image with Node, ROS, and Electron dependencies.
 # FROM electron-ros:latest AS base
-FROM 770790627165.dkr.ecr.us-west-2.amazonaws.com/electron-ros:latest AS base
+FROM 612639009764.dkr.ecr.us-west-2.amazonaws.com/electron-ros:latest AS base
+# FROM 770790627165.dkr.ecr.us-west-2.amazonaws.com/electron-ros:latest AS base
 WORKDIR /usr/src/app
 COPY package.json ./
 
